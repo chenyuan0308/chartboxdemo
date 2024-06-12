@@ -1,7 +1,6 @@
-import React, { useCallback, Suspense, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import RouterView from "@/router/routets";
 import { useNavigate } from "react-router-dom";
 import DetailsContent from "./DetailsContent"
 const { Header, Content, Sider } = Layout;
