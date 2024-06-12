@@ -1,4 +1,4 @@
-import React, { useCallback, Suspense } from "react";
+import React, { useCallback, Suspense, useEffect, useState } from "react";
 import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import RouterView from "@/router/routets";
@@ -14,16 +14,20 @@ const items = [UserOutlined, VideoCameraOutlined].map((icon, index) => ({
 const App: React.FC = () => {
   const navigate = useNavigate();
 
+  const [defaultKey, setDefaultKey] = useState(["1"]);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const onClick = useCallback(
-    (item) => {
-      navigate(item.key === "1" ? "/detailsone" : "/detailstwo");
-    },
-    [navigate]
-  );
+  const onClick = useCallback((item) => {
+    setDefaultKey([item.key]);
+  }, []);
+
+  useEffect(() => {
+    navigate(defaultKey[0] === "1" ? "/detailsone" : "/detailstwo");
+  }, [defaultKey, navigate]);
+
   return (
     <Layout style={{ height: "100%" }}>
       <Sider
@@ -40,7 +44,7 @@ const App: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={defaultKey}
           items={items}
           onClick={onClick}
         />
@@ -52,6 +56,8 @@ const App: React.FC = () => {
               padding: 24,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
+              height: "100%",
+              overflowY: "auto",
             }}
           >
             <Suspense>
