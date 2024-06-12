@@ -3,7 +3,7 @@ import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import RouterView from "@/router/routets";
 import { useNavigate } from "react-router-dom";
-
+import DetailsContent from "./DetailsContent"
 const { Header, Content, Sider } = Layout;
 
 const items = [UserOutlined, VideoCameraOutlined].map((icon, index) => ({
@@ -11,6 +11,7 @@ const items = [UserOutlined, VideoCameraOutlined].map((icon, index) => ({
   icon: React.createElement(icon),
   label: `details ${index + 1}`,
 }));
+
 const App: React.FC = () => {
   const navigate = useNavigate();
 
@@ -60,9 +61,7 @@ const App: React.FC = () => {
               overflowY: "auto",
             }}
           >
-            <Suspense>
-              <RouterView />
-            </Suspense>
+            <DetailsContent />
           </div>
         </Content>
       </Layout>
