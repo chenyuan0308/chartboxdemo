@@ -1,20 +1,33 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
-import DetailsContent from "./DetailsContent"
-const { Header, Content, Sider } = Layout;
+import DetailsContent from "./DetailsContent";
+import Header from "./header.tsx";
+const { Content, Sider } = Layout;
 
-const items = [UserOutlined, VideoCameraOutlined].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `details ${index + 1}`,
-}));
+const items = [
+  {
+    key: "/home",
+    icon: React.createElement(UserOutlined),
+    label: "Home",
+  },
+  // {
+  //   key: "/home",
+  //   icon: React.createElement(UserOutlined),
+  //   label: "Home",
+  // },
+  // {
+  //   key: "/home",
+  //   icon: React.createElement(UserOutlined),
+  //   label: "Home",
+  // },
+];
 
 const App: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [defaultKey, setDefaultKey] = useState(["1"]);
+  const [defaultKey, setDefaultKey] = useState(["/home"]);
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -24,9 +37,9 @@ const App: React.FC = () => {
     setDefaultKey([item.key]);
   }, []);
 
-  useEffect(() => {
-    navigate(defaultKey[0] === "1" ? "/detailsone" : "/detailstwo");
-  }, [defaultKey, navigate]);
+  // useEffect(() => {
+  //   navigate(defaultKey[0] === "1" ? "/detailsone" : "/detailstwo");
+  // }, [defaultKey, navigate]);
 
   return (
     <Layout style={{ height: "100%" }}>
@@ -50,6 +63,7 @@ const App: React.FC = () => {
         />
       </Sider>
       <Layout>
+        <Header />
         <Content style={{ margin: "24px 16px 0", height: "100%" }}>
           <div
             style={{

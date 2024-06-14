@@ -9,13 +9,17 @@ import {
 
 const DetailsOne = lazy(() => import("@/pages/detailsone"));
 const DetailsTwo = lazy(() => import("@/pages/detailstwo"));
-// const Resources = lazy(() => import("@/pages/resources"));
+const Home = lazy(() => import("@/pages/home"));
 // const Events = lazy(() => import("@/pages/events"));
 
 export const routes = [
   {
     path: "/",
-    element: <Navigate to="/detailsone" />,
+    element: <Navigate to="/home" />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
   },
   {
     path: "/detailsone",
