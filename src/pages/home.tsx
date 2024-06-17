@@ -1,6 +1,9 @@
-import { Carousel, Image } from "antd";
-import { useMemo } from "react";
+import { Carousel, Image, Drawer } from "antd";
+import { useCallback, useMemo, useState } from "react";
+import DetailOne from "./detailsone.tsx";
+import DetailTwo from "./detailstwo.tsx";
 export default function Home() {
+  const [open, setOpen] = useState(false);
   const imgList = useMemo(() => {
     return [
       {
@@ -59,13 +62,21 @@ export default function Home() {
       },
     ];
   }, []);
+  const showDrawer = useCallback(() => {
+    setOpen(true);
+  }, []);
+
+  const onClose = useCallback(() => {
+    setOpen(false);
+  }, []);
   return (
     <div>
       <div
         className="cursor-pointer"
         style={{ borderRadius: "1rem", overflow: "hidden" }}
+        onClick={showDrawer}
       >
-        <Carousel autoplay autoplaySpeed={1500}>
+        <Carousel autoplay autoplaySpeed={1000} fade>
           <div className="text-center">
             <Image
               preview={false}
@@ -158,7 +169,6 @@ export default function Home() {
             </span>
           </div>
         </div>
-
         <div className="w-[100%] flex justify-center mt-12">
           <Image
             preview={false}
@@ -202,6 +212,10 @@ export default function Home() {
           />
         </div>
       </div>
+      <Drawer width={'90%'} title="Product Details" onClose={onClose} open={open}>
+       <DetailOne></DetailOne>
+       <DetailTwo></DetailTwo>
+      </Drawer>
     </div>
   );
 }

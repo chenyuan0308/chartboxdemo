@@ -33,8 +33,8 @@ export default function Header() {
             className="ml-4 bg-[#eee]"
           />
           <div className="ml-auto ">
-            <span className="mr-4 cursor-pointer">register</span>
-            <span className="mr-4 text-blue-400 cursor-pointer">login</span>
+            <span className="mr-4 cursor-pointer text-xl">register</span>
+            <span className="mr-4 text-blue-400 cursor-pointer text-xl">login</span>
             <UserOutlined style={{ fontSize: "20px" }} />
           </div>
         </div>
